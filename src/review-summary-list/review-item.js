@@ -1,5 +1,7 @@
 import React from "react";
 import {timeConverter} from "../utility";
+import reviewSummaryList from "./index";
+import {Link} from "react-router-dom";
 
 const ReviewSummaryListItem = ({review}) => {
     const postDate = timeConverter(review.time);
@@ -7,7 +9,12 @@ const ReviewSummaryListItem = ({review}) => {
         <li className="list-group-item">
             <div className="row">
                 <div className="col-2">
-                    {review.username}
+                    {
+                        review.score === 'Score' ? review.username :
+                        <Link to={"/profile/" + review.username}>
+                            {review.username}
+                        </Link>
+                    }
                 </div>
                 <div className="col-6">
                     {review.content}
@@ -16,7 +23,7 @@ const ReviewSummaryListItem = ({review}) => {
                     {review.score}
                 </div>
                 <div className="col-2">
-                    {postDate}
+                    {typeof review.time === "string" ? review.time : postDate}
                 </div>
             </div>
         </li>
