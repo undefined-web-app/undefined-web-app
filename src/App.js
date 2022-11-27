@@ -18,7 +18,7 @@ function App() {
               <Routes>
                 <Route index
                        element={<Home/>}/>
-                <Route path="/search/*"
+                <Route path="/search/:title"
                        element={<Search/>}/>
                 {/*<Route path="/login"*/}
                 {/*       element={<Login/>}/>*/}
