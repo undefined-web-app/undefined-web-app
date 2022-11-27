@@ -11,11 +11,16 @@ const ReviewSummaryList = () => {
         dispatch(findReviewsThunk())
         // eslint-disable-next-line
     }, [])
-
+    const defaultCol = {
+        "username": "Username",
+        "content": "Review",
+        "score": "Score",
+        "time": "Posted On"
+    }
     return (
-        <ul className="list-group border border-primary">
+        <ul className="list-group border border-primary mt-3">
             <li className="list-group-item fw-bold">
-                Review Summary List
+                <h3>Recent Hot Reviews</h3>
             </li>
             {
                 loading &&
@@ -24,9 +29,10 @@ const ReviewSummaryList = () => {
                 </li>
             }
             { !loading &&
-                reviews.map(review =>
-                    <ReviewSummaryListItem review={review}/>
-                )
+                <div>
+                    <ReviewSummaryListItem review={defaultCol}/>
+                    {reviews.map(review =><ReviewSummaryListItem review={review}/>)}
+                </div>
             }
         </ul>
     );
