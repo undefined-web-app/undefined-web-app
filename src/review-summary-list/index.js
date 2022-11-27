@@ -20,7 +20,7 @@ const ReviewSummaryList = () => {
     return (
         <ul className="list-group border border-primary mt-3">
             <li className="list-group-item fw-bold">
-                <h3>Recent Hot Reviews</h3>
+                <h4>Recent Hot Reviews</h4>
             </li>
             {
                 loading &&
