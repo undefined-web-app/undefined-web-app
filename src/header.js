@@ -10,7 +10,12 @@ const Header = () => {
       <div className={"col-1 float-end"}>
         <button className="btn btn-primary">
           <Link to="/register">
-            <div className="text-white">Login/Register</div>
+            <div className="text-white">Register</div>
+          </Link>
+        </button>
+        <button className="btn btn-primary">
+          <Link to="/login">
+            <div className="text-white">Login</div>
           </Link>
         </button>
       </div>

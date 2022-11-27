@@ -10,6 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import usersReducer from "./users/users-reducer";
 import Header from "./header";
 import Register from "./users/register";
+import Login from "./users/login";
 
 const store = configureStore({
   reducer: { reviews: reviewsReducer, users: usersReducer },
@@ -17,7 +18,6 @@ const store = configureStore({
 
 function App() {
   return (
-
     <Provider store={store}>
       <BrowserRouter>
         <div className="container">
@@ -27,6 +27,7 @@ function App() {
             <Route path="/search/:title" element={<Search />} />
             <Route path="/users" element={<UserList />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
             {/*<Route path="/login"*/}
             {/*       element={<Login/>}/>*/}
           </Routes>
