@@ -1,15 +1,19 @@
-
-
+import React from "react";
 const SearchItem = (
     {
         movie
     }
     ) => {
+    let image = movie.Poster;
+    if (movie.Poster === "N/A"){
+        image = "../images/noinfo.png";
+    }
+    console.log(movie.Poster);
     return(
         <li className={"list-group-item"}>
             <div className={"row mt-2"}>
                 <div className={"col-2"}>
-                    <img src={movie.Poster} className="img-fluid" alt="movie-poster"/>
+                    <img src={image} className="img-fluid" alt="No Infomation"/>
                 </div>
                 <div className={"col-7"}>
                     <div>

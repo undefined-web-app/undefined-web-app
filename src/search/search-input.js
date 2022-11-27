@@ -13,7 +13,7 @@ const SearchInput = () =>{
                        wd-nudge-up"></i>
             </div>
             <div className="col-1">
-                <a href={"/search/:"+title}>
+                <a href={"/search/"+title}>
                     <button>Search</button>
                 </a>
             </div>
