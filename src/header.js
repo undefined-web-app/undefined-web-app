@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <div className={"row mt-2"}>
-      <div className={"col-11"}>
+      <div className={"col-11 h3"}>
         <Link to="/">Undefined Movies Review</Link>
       </div>
       <div className={"col-1 float-end"}>
