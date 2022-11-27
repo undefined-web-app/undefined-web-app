@@ -4,6 +4,7 @@ import Header from "../search/header";
 import SearchInput from "../search/search-input";
 
 const Home = () => {
+    console.log(Date.now());
     return (
         <>
             <Header/>
