@@ -1,21 +1,16 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { registerThunk } from "./users-thunks";
+import { loginThunk } from "./users-thunks";
 
-const Register = () => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [validatePassword, setValidatePassword] = useState("");
   const [error, setError] = useState(null);
   const dispatch = useDispatch();
-  const handleRegisterBtn = () => {
-    if (password !== validatePassword) {
-      setError("Password must match.");
-      return;
-    }
+  const handleLoginBtn = () => {
     setError(null);
-    const newUser = { username, password };
-    dispatch(registerThunk(newUser));
+    const loginUser = { username, password };
+    dispatch(loginThunk(loginUser));
   };
   return (
     <>
@@ -32,17 +27,11 @@ const Register = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <h5>Confirm password</h5>
-      <input
-        className="form-control mb-2"
-        value={validatePassword}
-        onChange={(e) => setValidatePassword(e.target.value)}
-      />
-      <button onClick={handleRegisterBtn} className="btn btn-primary w-100">
-        Register
+      <button onClick={handleLoginBtn} className="btn btn-primary w-100">
+        Login
       </button>
     </>
   );
 };
 
-export default Register;
+export default Login;
