@@ -1,5 +1,6 @@
 import './App.css';
 import Home from "./home";
+import Search from "./search";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {configureStore} from "@reduxjs/toolkit";
 import reviewsReducer from "./reducers/reviews-reducer";
@@ -17,8 +18,8 @@ function App() {
               <Routes>
                 <Route index
                        element={<Home/>}/>
-                {/*<Route path="/search/*"*/}
-                {/*       element={<Search/>}/>*/}
+                <Route path="/search/*"
+                       element={<Search/>}/>
                 {/*<Route path="/login"*/}
                 {/*       element={<Login/>}/>*/}
               </Routes>
