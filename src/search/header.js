@@ -9,7 +9,7 @@ const Header = () => {
                 title
             </div>
             <div className={"col-1 float-end"}>
-                <button>
+                <button className={"btn btn-primary"}>
                     login/register
                 </button>
             </div>
