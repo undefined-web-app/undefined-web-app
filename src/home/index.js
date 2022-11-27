@@ -1,9 +1,13 @@
 import ReviewSummaryList from "../review-summary-list";
+import header from "../search/header";
+import Header from "../search/header";
+import SearchInput from "../search/search-input";
 
 const Home = () => {
     return (
         <>
-            <h1>Header Component</h1>
+            <Header/>
+            <SearchInput/>
             <ReviewSummaryList/>
         </>
     )
