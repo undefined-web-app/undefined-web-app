@@ -8,11 +8,11 @@ import reviewsReducer from "./reducers/reviews-reducer";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import usersReducer from "./users/users-reducer";
-import Header from "./header";
 import Register from "./users/register";
 import Login from "./users/login";
 import Profile from "./users/profile";
-// import CurrentUser from "./users/current-user";
+import Navigation from "./navigation";
+import CurrentUser from "./users/current-user";
 
 const store = configureStore({
   reducer: { reviews: reviewsReducer, users: usersReducer },
@@ -21,21 +21,23 @@ const store = configureStore({
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <div className="container">
-          <Header />
-          <Routes>
-            <Route index element={<Home />} />
-            <Route path="/search/:title" element={<Search />} />
-            <Route path="/users" element={<UserList />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            {/*<Route path="/login"*/}
-            {/*       element={<Login/>}/>*/}
-          </Routes>
-        </div>
-      </BrowserRouter>
+      <CurrentUser>
+        <BrowserRouter>
+          <div className="container">
+            <Navigation />
+            <Routes>
+              <Route index element={<Home />} />
+              <Route path="/search/:title" element={<Search />} />
+              <Route path="/users" element={<UserList />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profile" element={<Profile />} />
+              {/*<Route path="/login"*/}
+              {/*       element={<Login/>}/>*/}
+            </Routes>
+          </div>
+        </BrowserRouter>
+      </CurrentUser>
     </Provider>
   );
 }

@@ -5,14 +5,14 @@ import { useEffect } from "react";
 import { profileThunk } from "../users/users-thunks";
 
 const Home = () => {
-  /*const { currentUser } = useSelector((state) => state.users);
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(profileThunk());
-  }, []);*/
+  }, []);
   return (
     <>
-      {/*{currentUser && <h2>Welcome {currentUser.username}</h2>}*/}
+      {currentUser && <h2>Welcome {currentUser.username}</h2>}
       <SearchInput />
       <ReviewSummaryList />
     </>
