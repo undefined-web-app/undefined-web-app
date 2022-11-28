@@ -17,14 +17,16 @@ const SearchItem = (
                 </div>
                 <div className={"col-7"}>
                     <div>
-                        <h2>{movie.Title}</h2>
+                        <a href="#" className={"text-decoration-none"}>
+                            <h2 className={"text-dark"}>{movie.Title}</h2>
+                        </a>
                     </div>
                     <div>
-                        <h3>Year:{movie.Year} ID:{movie.imdbID} </h3>
+                        <h3 className={"text-dark"}>Year:{movie.Year} ID:{movie.imdbID}</h3>
                     </div>
                 </div>
                 <div className={"col-2"}>
-                    <h2>26</h2>
+                    <h2 className={"text-warning"}>26</h2>
                 </div>
             </div>
         </li>
