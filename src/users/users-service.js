@@ -19,7 +19,12 @@ export const login = async (user) => {
 };
 
 export const profile = async () => {
-  const response = await axios.post(`${BASE_URL}/login`);
+  const response = await axios.post(`${BASE_URL}/profile`);
+  return response.data;
+};
+
+export const logout = async () => {
+  const response = await axios.post(`${BASE_URL}/logout`);
   return response.data;
 };
 
