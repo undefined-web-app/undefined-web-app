@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "./users-thunks";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const handleLoginBtn = () => {
     setError(null);
@@ -14,6 +15,7 @@ const Login = () => {
   };
   return (
     <>
+      <h1>Login</h1>
       {error && <div className="alert alert-danger">{error}</div>}
       <h5>Username</h5>
       <input
@@ -30,6 +32,7 @@ const Login = () => {
       <button onClick={handleLoginBtn} className="btn btn-primary w-100">
         Login
       </button>
+      {currentUser && <h2>Welcome {currentUser.username}</h2>}
     </>
   );
 };

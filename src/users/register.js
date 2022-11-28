@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "./users-thunks";
 
 const Register = () => {
@@ -7,6 +7,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
   const [error, setError] = useState(null);
+  const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   const handleRegisterBtn = () => {
     if (password !== validatePassword) {
@@ -19,6 +20,7 @@ const Register = () => {
   };
   return (
     <>
+      <h1>Register</h1>
       {error && <div className="alert alert-danger">{error}</div>}
       <h5>Username</h5>
       <input
@@ -41,6 +43,7 @@ const Register = () => {
       <button onClick={handleRegisterBtn} className="btn btn-primary w-100">
         Register
       </button>
+      {currentUser && <h2>Welcome {currentUser.username}</h2>}
     </>
   );
 };

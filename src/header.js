@@ -18,6 +18,11 @@ const Header = () => {
             <div className="text-white">Login</div>
           </Link>
         </button>
+        <button className="btn btn-primary">
+          <Link to="/profile">
+            <div className="text-white">Profile</div>
+          </Link>
+        </button>
       </div>
     </div>
   );

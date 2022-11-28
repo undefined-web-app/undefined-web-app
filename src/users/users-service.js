@@ -18,6 +18,11 @@ export const login = async (user) => {
   return response.data;
 };
 
+export const profile = async () => {
+  const response = await axios.post(`${BASE_URL}/login`);
+  return response.data;
+};
+
 export const deleteUser = async (uid) => {};
 
 export const updateUser = async (uid, userUpdates) => {};
