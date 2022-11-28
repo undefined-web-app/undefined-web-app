@@ -28,7 +28,7 @@ const SearchList = () => {
             <SearchInput/>
             <ul className="list-group mt-5 ">
                 {
-                     movies.map((movie,index) =>
+                     movies.slice(0,3).map((movie,index) =>
                         <SearchItem key={index} movie = {movie}/>
                     )
                 }

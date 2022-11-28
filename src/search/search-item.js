@@ -12,7 +12,7 @@ const SearchItem = (
         <li className={"list-group-item"}>
             <div className={"row mt-2"}>
                 <div className={"col-2"}>
-                    <img src={image} className="img-fluid" alt="No Infomation"/>
+                    <img src="../../public/images/noinfo.png" className="img-fluid" alt="No Infomation"/>
                 </div>
                 <div className={"col-7"}>
                     <div>
