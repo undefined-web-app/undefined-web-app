@@ -11,6 +11,8 @@ import usersReducer from "./users/users-reducer";
 import Header from "./header";
 import Register from "./users/register";
 import Login from "./users/login";
+import Profile from "./users/profile";
+// import CurrentUser from "./users/current-user";
 
 const store = configureStore({
   reducer: { reviews: reviewsReducer, users: usersReducer },
@@ -28,6 +30,7 @@ function App() {
             <Route path="/users" element={<UserList />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
             {/*<Route path="/login"*/}
             {/*       element={<Login/>}/>*/}
           </Routes>
