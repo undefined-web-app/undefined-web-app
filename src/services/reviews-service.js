@@ -8,3 +8,29 @@ export const findReviews = async () => {
     const reviews = response.data;
     return reviews;
 }
+
+export const findReviewsByIMDBID = async (imdbID) => {
+    await axios.get( REVIEW_API,{
+        params: {
+            imdbID: imdbID // This is the body part
+        }
+    }).then(response => {
+        console.log(response.data);
+        return response.data;
+    });
+}
+
+export const findReviewsByUserName = async (username) => {
+    await axios.get( REVIEW_API,{
+        params: {
+            username: username // This is the body part
+        }
+    }).then(response => {
+        console.log(response.data);
+        return response.data;
+    });
+}
+
+export const createReview = async () => {
+
+}

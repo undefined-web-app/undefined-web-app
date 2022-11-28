@@ -1,4 +1,3 @@
-import reviews from './reviews.json';
 import {createSlice} from "@reduxjs/toolkit";
 import {findReviewsThunk} from "../services/reviews-thunk";
 

@@ -5,9 +5,7 @@ import SearchInput from "./search-input";
 import {useDispatch} from "react-redux";
 import {useParams} from "react-router-dom";
 
-
 const SearchList = () => {
-
     var title = useParams().title;
     //var title = window.location.href.split("/:")[1];
     const [movies, setMovies] = useState([]);
@@ -24,7 +22,6 @@ const SearchList = () => {
     useEffect(() => {
         findmovie();
     }, [dispatch])
-
 
     return(
         <>

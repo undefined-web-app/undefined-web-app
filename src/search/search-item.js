@@ -8,7 +8,6 @@ const SearchItem = (
     if (movie.Poster === "N/A"){
         image = "../images/noinfo.png";
     }
-    console.log(movie.Poster);
     return(
         <li className={"list-group-item"}>
             <div className={"row mt-2"}>
