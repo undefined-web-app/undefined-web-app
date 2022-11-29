@@ -1,24 +1,28 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import * as reviewService from "../services/reviews-service.js";
-import {useDispatch} from "react-redux";
-import {findReviewsThunk} from "../services/reviews-thunk";
-import reviewItem from "./review-item";
+import ReviewItem from "./review-item";
+
 const MovieReviews = (
     {
         imdbID
     }
 ) =>{
+    const[reviews,serReviews] = useState();
+    const findreview = async (imdbID) =>{
+        const reviewData = await reviewService.findReviewsByIMDBID(imdbID);
+        serReviews(reviewData);
+    }
+    useEffect(() => {
+        findreview(imdbID);
+    }, [])
 
-    const reviewData = reviewService.findReviewsByIMDBID(imdbID)
-    console.log(reviewData);
     return(
-
-        <ul>
-            <li>
-                {
-                }
-            </li>
-
+        <ul className={"list-group"}>
+            {
+                reviews !== undefined &&
+                reviews.map(review=>
+                <ReviewItem key={review._id} review={review}/>)
+            }
         </ul>
     )
 }

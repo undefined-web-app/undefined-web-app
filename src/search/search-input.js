@@ -2,7 +2,7 @@
 import {useState} from "react";
 const SearchInput = () =>{
 
-    let [title, settitle] = useState("a")
+    let [title, settitle] = useState("")
 
     return(
         <div className={"row mt-1 mb-3"}>

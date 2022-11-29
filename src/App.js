@@ -14,9 +14,10 @@ import Profile from "./users/profile";
 import Navigation from "./navigation";
 import CurrentUser from "./users/current-user";
 import Detail from "./detail/index";
+import bookmarkReducer from "./reducers/bookmark-reducer";
 
 const store = configureStore({
-  reducer: { reviews: reviewsReducer, users: usersReducer },
+  reducer: { reviews: reviewsReducer, users: usersReducer, bookmarks: bookmarkReducer },
 });
 
 function App() {

@@ -12,11 +12,11 @@ const SearchItem = (
         <li className={"list-group-item"}>
             <div className={"row mt-2"}>
                 <div className={"col-2"}>
-                    <img src="../../public/images/noinfo.png" className="img-fluid" alt="No Infomation"/>
+                    <img src={image} className="img-fluid" alt="No Infomation"/>
                 </div>
                 <div className={"col-7"}>
                     <div>
-                        <a href="#" className={"text-decoration-none"}>
+                        <a href={"/detail/"+movie.imdbID} className={"text-decoration-none"}>
                             <h2 className={"text-dark"}>{movie.Title}</h2>
                         </a>
                     </div>
