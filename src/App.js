@@ -14,10 +14,13 @@ import Login from "./users/login";
 import Profile from "./users/profile";
 import Navigation from "./navigation";
 import CurrentUser from "./users/current-user";
+import Detail from "./detail/index";
+import bookmarkReducer from "./reducers/bookmark-reducer";
 import EditProfile from "./users/edit-profile";
 
+
 const store = configureStore({
-  reducer: { reviews: reviewsReducer, users: usersReducer },
+  reducer: { reviews: reviewsReducer, users: usersReducer, bookmarks: bookmarkReducer },
 });
 
 function App() {
@@ -30,6 +33,8 @@ function App() {
             <Routes>
               <Route index element={<Home />} />
               <Route path="/search/:title" element={<Search />} />
+              <Route path="/search" element={<Search />} />
+              <Route path="/detail/:imdbID" element={<Detail />} />
               <Route path="/users" element={<UserList />} />
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
