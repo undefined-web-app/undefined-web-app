@@ -5,6 +5,7 @@ import {
   logoutThunk,
   profileThunk,
   registerThunk,
+  updateUserThunk,
 } from "./users-thunks";
 
 const usersReducer = createSlice({
@@ -15,7 +16,22 @@ const usersReducer = createSlice({
     currentUser: null,
     error: null,
   },
-  reducers: {},
+  reducers: {
+    updateProfile(state, action) {
+      const updatedProfile = action.payload;
+      const bio = updatedProfile.bio;
+      const firstName = updatedProfile.firstName;
+      const lastName = updatedProfile.lastName;
+      const email = updatedProfile.email;
+      return {
+        ...state,
+        bio,
+        firstName,
+        lastName,
+        email,
+      };
+    },
+  },
   extraReducers: {
     [findAllUsersThunk.fulfilled]: (state, action) => {
       state.users = action.payload;
@@ -44,7 +60,11 @@ const usersReducer = createSlice({
       state.error = action.payload;
       state.currentUser = null;
     },
+    [updateUserThunk.fulfilled]: (state, action) => {
+      state.currentUser = action.payload;
+    },
   },
 });
 
 export default usersReducer.reducer;
+export const { updateProfile } = usersReducer.actions;
