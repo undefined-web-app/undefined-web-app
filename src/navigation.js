@@ -8,9 +8,10 @@ const Navigation = () => {
   const { pathname } = useLocation();
   const parts = pathname.split("/");
 
-  const screens = ["users"];
+  const screens = [];
   if (currentUser) {
     screens.push("profile");
+    screens.push("users");
   } else {
     screens.push("login");
     screens.push("register");
