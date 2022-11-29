@@ -6,3 +6,10 @@ export const findReviewsThunk = createAsyncThunk(
         return await service.findReviews();
     }
 )
+
+export const createReviewThunk = createAsyncThunk(
+    'reviews/createReview',
+    async (review) => {
+        return await service.createReview(review);
+    }
+    )

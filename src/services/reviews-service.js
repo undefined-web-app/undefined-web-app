@@ -35,6 +35,7 @@ export const findReviewsByUserName = async (username) => {
 
 }
 
-export const createReview = async () => {
-
+export const createReview = async (review) => {
+    const response = await axios.post(REVIEW_API, review);
+    return response.data;
 }

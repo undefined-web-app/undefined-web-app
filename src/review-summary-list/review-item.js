@@ -16,7 +16,10 @@ const ReviewSummaryListItem = ({review}) => {
                         </Link>
                     }
                 </div>
-                <div className="col-6">
+                <div className="col-2">
+                    {review.imdbID}
+                </div>
+                <div className="col-4">
                     {review.content}
                 </div>
                 <div className="col-2">
