@@ -7,6 +7,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import reviewsReducer from "./reducers/reviews-reducer";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
 import usersReducer from "./users/users-reducer";
 import Register from "./users/register";
 import Login from "./users/login";
@@ -15,6 +16,8 @@ import Navigation from "./navigation";
 import CurrentUser from "./users/current-user";
 import Detail from "./detail/index";
 import bookmarkReducer from "./reducers/bookmark-reducer";
+import EditProfile from "./users/edit-profile";
+
 
 const store = configureStore({
   reducer: { reviews: reviewsReducer, users: usersReducer, bookmarks: bookmarkReducer },
@@ -36,6 +39,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profile" element={<Profile />} />
+              <Route path="/edit-profile" element={<EditProfile />} />
               {/*<Route path="/login"*/}
               {/*       element={<Login/>}/>*/}
             </Routes>

@@ -14,7 +14,8 @@ const Home = () => {
     <>
       {currentUser && <h2>Welcome {currentUser.username}</h2>}
       <SearchInput />
-      <ReviewSummaryList />
+      <ReviewSummaryList title={'Recent Hot Reviews'} length={10}/>
+      {/*<ReviewSummaryList title={'Recent Hot Reviews'} username={'liuhantong'} imdbID={'tt2975590'} length={5}/>*/}
     </>
   );
 };
