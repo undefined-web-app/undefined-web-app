@@ -33,7 +33,7 @@ export const deleteUser = async (uid) => {
   return response.data;
 };
 
-export const updateUser = async (uid, userUpdates) => {
-  const response = await axios.put(`${BASE_URL}/edit-profile`, userUpdates);
+export const updateUser = async (userUpdates) => {
+  const response = await axios.put(`${BASE_URL}/users/${userUpdates._id}`, userUpdates);
   return response.data;
 };

@@ -62,7 +62,15 @@ const usersReducer = createSlice({
       state.currentUser = null;
     },
     [updateUserThunk.fulfilled]: (state, action) => {
-      state.currentUser = action.payload;
+      const payload = action.payload;
+      state.loading = false;
+      const userIdx = state.users
+          .findIndex((u) => u._id === payload._id);
+      state.users[userIdx] = {
+        ...state.users[userIdx],
+        ...payload
+      }
+      state.currentUser = state.users[userIdx];
     },
     [deleteUserThunk.fulfilled]: (state, action) => {
       state.users = action.payload;
