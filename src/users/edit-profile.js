@@ -38,6 +38,36 @@ const EditProfile = () => {
           onChange={(e) => setBio(e.target.value)}
         />
       </div>
+      <div className="form-group pt-4">
+        <label htmlFor="inputFirstName">First Name</label>
+        <textarea
+          className="form-control"
+          id="inputFirstName"
+          placeholder="First Name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+        />
+      </div>
+      <div className="form-group pt-4">
+        <label htmlFor="inputLastName">Last Name</label>
+        <textarea
+          className="form-control"
+          id="inputLastName"
+          placeholder="Last Name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+        />
+      </div>
+      <div className="form-group pt-4">
+        <label htmlFor="inputEmail">Email</label>
+        <textarea
+          className="form-control"
+          id="inputEmail"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+      </div>
     </>
   );
 };

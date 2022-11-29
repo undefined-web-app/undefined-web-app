@@ -1,13 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { current } from "@reduxjs/toolkit";
-import { logoutThunk } from "./users-thunks";
-import { Link } from "react-router-dom";
+import { findAllUsersThunk, logoutThunk } from "./users-thunks";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
+  const { users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+  useEffect(() => {
+    // findAllUsers();
+    dispatch(findAllUsersThunk());
+  }, []);
   const handleLogout = () => {
     dispatch(logoutThunk());
+    navigate("/");
   };
   return (
     <>
@@ -37,9 +45,32 @@ const Profile = () => {
           </div>
         </div>
 
-        <div>recommended users</div>
+        <div>
+          <div className="list-group mt-4">
+            <div className="list-group-item">
+              <h5>Recommended users you might know</h5>
+            </div>
+            <div className="list-group-item">
+              <ul className="list-group">
+                {users.slice(Math.random(), Math.random() + 3).map((user) => (
+                  <li className="list-group-item" key={user._id}>
+                    {user.username}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="list-group mt-4">
+            <div className="list-group-item">
+              <h5>Book marks</h5>
+            </div>
+          </div>
+        </div>
       </div>
-      <button className="btn btn-danger" onClick={handleLogout}>
+      <button className="btn btn-danger mt-4" onClick={handleLogout}>
         Logout
       </button>
     </>
