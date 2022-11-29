@@ -36,7 +36,7 @@ export const profileThunk = createAsyncThunk(
 
 export const updateUserThunk = createAsyncThunk(
   "updateUser",
-  async () => await updateUser()
+  async (userUpdates) => await updateUser(userUpdates)
 );
 
 export const deleteUserThunk = createAsyncThunk(
