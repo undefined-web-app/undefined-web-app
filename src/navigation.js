@@ -9,9 +9,11 @@ const Navigation = () => {
   const parts = pathname.split("/");
 
   const screens = [];
-  if (currentUser) {
-    screens.push("profile");
+  if (currentUser && currentUser.type === "ADMIN") {
     screens.push("users");
+    screens.push("profile");
+  } else if (currentUser) {
+    screens.push("profile");
   } else {
     screens.push("login");
     screens.push("register");
