@@ -3,6 +3,8 @@ import { current } from "@reduxjs/toolkit";
 import { findAllUsersThunk, logoutThunk } from "./users-thunks";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import ReviewItem from "../review-summary-list/review-item";
+import ReviewSummaryList from "../review-summary-list";
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -61,6 +63,8 @@ const Profile = () => {
             </div>
           </div>
         </div>
+
+        <ReviewSummaryList title={'Your Reviews'} username={currentUser.username} />
 
         <div>
           <div className="list-group mt-4">
