@@ -5,15 +5,21 @@ import { useState } from "react";
 import { updateUserThunk } from "./users-thunks";
 
 const EditProfile = () => {
-  const [bio, setBio] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [email, setEmail] = useState();
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
+  const [bio, setBio] = useState(currentUser.bio);
+  const [firstName, setFirstName] = useState(currentUser.firstName);
+  const [lastName, setLastName] = useState(currentUser.lastName);
+  const [email, setEmail] = useState(currentUser.email);
   const dispatch = useDispatch();
   const updateProfileHandler = () => {
-    dispatch(updateUserThunk());
+    dispatch(updateUserThunk({
+        ...currentUser,
+        bio: bio,
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+    }));
     navigate("/profile");
   };
   return (
