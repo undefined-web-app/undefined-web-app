@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "./users-thunks";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const { users } = useSelector((state) => state.users);
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
@@ -14,9 +17,15 @@ const Register = () => {
       setError("Password must match.");
       return;
     }
+    if (username === users.username) {
+      setError("User already exist.");
+      return;
+    }
     setError(null);
     const newUser = { username, password };
     dispatch(registerThunk(newUser));
+    // setTimeout(5000);
+    navigate("/");
   };
   return (
     <>

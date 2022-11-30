@@ -3,7 +3,7 @@ import ReviewSummaryListItem from "./review-item";
 import { useEffect } from "react";
 import { findReviewsThunk } from "../services/reviews-thunk";
 
-const ReviewSummaryList = ({title, username, imdbID, length, disable}) => {
+const ReviewSummaryList = ({ title, username, imdbID, length, disable }) => {
   // const { currentUser } = useSelector((state) => state.users);
   const { reviews, loading } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ReviewSummaryList = ({title, username, imdbID, length, disable}) => {
     content: "Review",
     score: "Score",
     time: "Posted On",
-    imdbID: "IMDB ID"
+    imdbID: "IMDB ID",
   };
   return (
     <>
@@ -28,11 +28,21 @@ const ReviewSummaryList = ({title, username, imdbID, length, disable}) => {
         {!loading && (
           <div className="list-group-item">
             <div className="list-group">
-            <ReviewSummaryListItem review={defaultCol} disable={disable}/>
-            {reviews.map((review) => (
-                (review.username === username || review.imdbID === imdbID || (username === undefined && imdbID === undefined)) &&
-              <ReviewSummaryListItem review={review} disable={disable}/>
-            )).slice(0, length)}
+              <ReviewSummaryListItem review={defaultCol} disable={disable} />
+              {reviews
+                .map(
+                  (review, index) =>
+                    (review.username === username ||
+                      review.imdbID === imdbID ||
+                      (username === undefined && imdbID === undefined)) && (
+                      <ReviewSummaryListItem
+                        key={index}
+                        review={review}
+                        disable={disable}
+                      />
+                    )
+                )
+                .slice(0, length)}
             </div>
           </div>
         )}
