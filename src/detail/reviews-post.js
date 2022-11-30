@@ -13,7 +13,7 @@ const ReviewsPost = (
                     <label className={"float-start"}>Score:</label>
                 </div>
                 <div className={"col-9"}>
-                    <input className={"form-range "} type="range" id="customRange3"/>
+                    <input className={"form-range "} type="range" id="customRange3" />
                 </div>
                 <div className={"col-1 ms-2"}>
                     <h2>23</h2>

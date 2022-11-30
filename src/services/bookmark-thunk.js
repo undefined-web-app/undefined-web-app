@@ -3,16 +3,18 @@ import {createAsyncThunk}
 import * as service
     from "./bookmark-service"
 
-// export const findBookMarkThunk = createAsyncThunk(
-//     'bookmark/findbookmark',
-//     async (userid) =>{
-//         await service.findBookmarkByUserId(userid)
-//     }
-// )
+export const findBookMarkThunk = createAsyncThunk(
+    'bookmark/findbookmark',
+    async (userid) =>{
+        const b = await service.findBookmarkByUserId(userid)
+        return b
+    }
+)
 
-
-export const findBookMarkThunk1 = createAsyncThunk(
-    'bookmark/findbookmark1', async () => {
-        return await service.findBookmark();
+export const CreateBookMarkThunk = createAsyncThunk(
+    'bookmark/createbookmark',
+    async (bookmark) =>{
+        const b = await service.createBookmark(bookmark)
+        return b
     }
 )
