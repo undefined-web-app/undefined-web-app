@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import React from "react";
 import {CreateBookMarkThunk} from "../services/bookmark-thunk";
+import ReviewScore from "../review-summary-list/review-score";
 
 const MovieDesciption = (
     {
@@ -10,23 +11,20 @@ const MovieDesciption = (
     }
 ) =>{
     const { currentUser } = useSelector((state) => state.users);
-
     const [movie, setMovie] = useState([]);
-    const Movie_API = "https://www.omdbapi.com/?apikey=c4ef1217&i="+imdbID ;
+    const MOVIE_API = "https://www.omdbapi.com/?apikey=c4ef1217&i="+imdbID ;
     const dispatch = useDispatch();
-    const findmovie = async () =>{
-        const response = await axios.get(Movie_API);
-        if (response.data.Response === 'False'){
+    const findMovie = async () =>{
+        const response = await axios.get(MOVIE_API);
+        if (response.data.response === 'False'){
             setMovie([])
         }else{
             setMovie(response.data)
         }
     }
     useEffect(() => {
-        findmovie();
+        findMovie();
     }, [])
-
-
     return (
         <div className={"card"}>
             <div className={"card-header"}>
@@ -52,7 +50,7 @@ const MovieDesciption = (
                     <p>Description: {movie.Plot}</p>
                 </div>
                 <div className={"col-2 float-end"}>
-                    <h2 className={"text-warning"}>52</h2>
+                    <ReviewScore imdbID={imdbID}/>
                 </div>
             </div>
 
