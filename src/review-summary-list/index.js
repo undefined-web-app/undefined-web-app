@@ -2,9 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ReviewSummaryListItem from "./review-item";
 import { useEffect } from "react";
 import { findReviewsThunk } from "../services/reviews-thunk";
-import PostReview from "./review-post";
 
-const ReviewSummaryList = ({title, username, imdbID, length}) => {
+const ReviewSummaryList = ({title, username, imdbID, length, disable}) => {
   // const { currentUser } = useSelector((state) => state.users);
   const { reviews, loading } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
@@ -29,10 +28,10 @@ const ReviewSummaryList = ({title, username, imdbID, length}) => {
         {!loading && (
           <div className="list-group-item">
             <div className="list-group">
-            <ReviewSummaryListItem review={defaultCol} />
+            <ReviewSummaryListItem review={defaultCol} disable={disable}/>
             {reviews.map((review) => (
                 (review.username === username || review.imdbID === imdbID || (username === undefined && imdbID === undefined)) &&
-              <ReviewSummaryListItem review={review} />
+              <ReviewSummaryListItem review={review} disable={disable}/>
             )).slice(0, length)}
             </div>
           </div>
