@@ -12,9 +12,9 @@ const UserList = () => {
     setUsers(users);
   };*/
   const dispatch = useDispatch();
-  /*const deleteUserBtn = () => {
-    dispatch(deleteUserThunk());
-  };*/
+  const deleteUserBtn = () => {
+    dispatch(deleteUserThunk(users._id));
+  };
 
   useEffect(() => {
     // findAllUsers();
@@ -31,7 +31,7 @@ const UserList = () => {
             {user.username}{" "}
             <button
               className="btn btn-danger float-end"
-              /*onClick={deleteUserBtn}*/
+              onClick={deleteUserBtn}
             >
               Delete
             </button>

@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import { findAllUsersThunk, logoutThunk } from "./users-thunks";
 import { Link, useNavigate } from "react-router-dom";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import ReviewSummaryList from "../review-summary-list";
-import {findBookMarkThunk} from "../services/bookmark-thunk";
-
+import { findBookMarkThunk } from "../services/bookmark-thunk";
 
 const Profile = () => {
+  const randomNumber = Math.floor(Math.random() * 10);
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
   const { users } = useSelector((state) => state.users);
@@ -21,12 +21,12 @@ const Profile = () => {
     navigate("/");
   };
 
-  console.log(currentUser)
-  const {bookmark,loading} = useSelector(state => state.bookmarks)
-   useEffect(() => {
-     dispatch(findBookMarkThunk(currentUser._id))
-   }, [])
-  console.log(bookmark)
+  console.log(currentUser);
+  const { bookmark, loading } = useSelector((state) => state.bookmarks);
+  useEffect(() => {
+    dispatch(findBookMarkThunk(currentUser._id));
+  }, []);
+  // console.log(bookmark);
 
   return (
     <>
@@ -39,7 +39,8 @@ const Profile = () => {
               <div className="col-6">
                 <img
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_p8GBXlnS_LCaQrNVA_Y4Sqc0SYHJHrJdcAOc-FzSspzaReqRjcaAaVvB8CfYICIaPjA&usqp=CAU"
-                  alt="Profile"/>
+                  alt="Profile"
+                />
               </div>
               <div className="col-6">
                 <h5>Username: {currentUser.username}</h5>
@@ -62,7 +63,7 @@ const Profile = () => {
             </div>
             <div className="list-group-item">
               <ul className="list-group">
-                {users.slice(Math.random(), Math.random() + 3).map((user) => (
+                {users.slice(randomNumber, randomNumber + 3).map((user) => (
                   <li className="list-group-item" key={user._id}>
                     {user.username}
                   </li>
@@ -72,33 +73,29 @@ const Profile = () => {
           </div>
         </div>
 
-        <ReviewSummaryList title={'Your Reviews'} username={currentUser.username} />
+        <ReviewSummaryList
+          title={"Your Reviews"}
+          username={currentUser.username}
+        />
 
         <div>
           <div className="list-group mt-4">
             <div className="list-group-item">
               <h5>Book marks</h5>
               <ul className={"list-group"}>
-                {
-                  bookmark.map(bookmark_item =>(
-                      <li className={"list-group-item"}>
-                        <div className={"row"}>
-                          <div className={"col-1"}>
-                            <img src={bookmark_item.Poster} height={100}></img>
-                          </div>
-                          <div className={"col-9 text-center"}>
-                            <p>
-                              Movie title: { bookmark_item.title}
-                            </p>
-                            <p>
-                              Movie ID: { bookmark_item.imdbID}
-                            </p>
-                          </div>
-                        </div>
-
-                      </li>
-                  ))
-                }
+                {bookmark.map((bookmark_item) => (
+                  <li className={"list-group-item"} key={bookmark_item._id}>
+                    <div className={"row"}>
+                      <div className={"col-1"}>
+                        <img src={bookmark_item.Poster} height={100}></img>
+                      </div>
+                      <div className={"col-9 text-center"}>
+                        <p>Movie title: {bookmark_item.title}</p>
+                        <p>Movie ID: {bookmark_item.imdbID}</p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
