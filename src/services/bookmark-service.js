@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BOOKMARK_API = "http://localhost:4000/bookmark/"
+const BOOKMARK_API = "http://localhost:4000/bookmark"
 
 export const createBookmark = async (bookmark) =>{
     const response = await axios.post(BOOKMARK_API, bookmark)

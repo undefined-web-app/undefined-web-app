@@ -1,5 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
-import { findBookMarkThunk1} from "../services/bookmark-thunk";
+import {CreateBookMarkThunk, findBookMarkThunk} from "../services/bookmark-thunk";
+
 
 
 const initialState = {
@@ -11,19 +12,25 @@ const bookmarkSlice = createSlice({
                                      name: 'bookmarks',
                                       initialState,
                                       extraReducers: {
-                                          [findBookMarkThunk1.pending]:
+                                          [findBookMarkThunk.pending]:
                                               (state) => {
                                                   state.loading = true
                                                   state.bookmark = []
                                               },
-                                          [findBookMarkThunk1.fulfilled]:
-                                              (state, { payload }) => {
+                                          [findBookMarkThunk.fulfilled]:
+                                              (state,  {payload} ) => {
                                                   state.loading = false
                                                   state.bookmark = payload
+                                                  console.log(state.bookmark)
                                               },
-                                          [findBookMarkThunk1.rejected]:
+                                          [findBookMarkThunk.rejected]:
                                               (state) => {
                                                   state.loading = false
+                                              },
+                                          [CreateBookMarkThunk.fulfilled]:
+                                              (state, {payload}) => {
+                                                state.loading = false
+                                                state.bookmark.push(payload)
                                               }
                                       },
 

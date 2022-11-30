@@ -1,18 +1,19 @@
 import axios from "axios";
-import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import React from "react";
+import {CreateBookMarkThunk} from "../services/bookmark-thunk";
 
 const MovieDesciption = (
     {
         imdbID
     }
 ) =>{
+    const { currentUser } = useSelector((state) => state.users);
 
     const [movie, setMovie] = useState([]);
     const Movie_API = "https://www.omdbapi.com/?apikey=c4ef1217&i="+imdbID ;
-
+    const dispatch = useDispatch();
     const findmovie = async () =>{
         const response = await axios.get(Movie_API);
         if (response.data.Response === 'False'){
@@ -33,7 +34,10 @@ const MovieDesciption = (
                     <h2 className={"text-dark"}>{movie.Title}</h2>
                 </div>
                 <div className={"float-end position-relative"}>
-                    <button className={"btn btn-danger"}>bookmark</button>
+                    <button onClick={()=>dispatch(CreateBookMarkThunk(
+                        {
+                            user_id: currentUser._id, imdbID: imdbID, title: movie.Title, Poster: movie.Poster
+                        }))} className={"btn btn-danger"}>bookmark</button>
                 </div>
             </div>
             <div className={"row card-body"}>
