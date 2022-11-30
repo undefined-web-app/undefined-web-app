@@ -1,8 +1,11 @@
 import MovieDescription from "./movie-desciption";
-import MovieReviews from "./movie-reviews";
-import ReviewsPost from "./reviews-post";
+
+import ReviewsPost from "../review-summary-list/reviews-post";
 import React from "react";
 import {useParams} from "react-router-dom";
+
+import ReviewSummaryList from "../review-summary-list";
+
 
 
 const Detail = () => {
@@ -13,7 +16,7 @@ const Detail = () => {
                 <MovieDescription imdbID={imdbID}/>
             </div>
             <div className={"mb-3"}>
-                <MovieReviews imdbID={imdbID}/>
+                <ReviewSummaryList imdbID={imdbID} title={'Reviews'}/>
             </div>
             <div className={"mb-3"}>
                 <ReviewsPost imdbID={imdbID}/>
