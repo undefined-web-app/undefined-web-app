@@ -1,7 +1,7 @@
 import axios from "axios";
 
-//const API_BASE = "http://localhost:4000";
-const API_BASE = "https://undefined-server-app.herokuapp.com";
+const API_BASE = "http://localhost:4000";
+// const API_BASE = "https://undefined-server-app.herokuapp.com";
 const REVIEW_API = `${API_BASE}/review`;
 
 export const findReviews = async () => {
@@ -38,4 +38,10 @@ export const findReviewsByUserName = async (username) => {
 export const createReview = async (review) => {
     const response = await axios.post(REVIEW_API, review);
     return response.data;
+}
+
+export const deleteReview = async (rid) => {
+    const response = await axios
+        .delete(`${REVIEW_API}/${rid}`)
+    return response.data
 }
