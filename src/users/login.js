@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginThunk } from "./users-thunks";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
@@ -12,6 +14,7 @@ const Login = () => {
     setError(null);
     const loginUser = { username, password };
     dispatch(loginThunk(loginUser));
+    navigate("/");
   };
   return (
     <>

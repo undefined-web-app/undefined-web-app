@@ -1,4 +1,5 @@
 import React from "react";
+import ReviewScore from "../review-summary-list/review-score";
 const SearchItem = (
     {
         movie
@@ -25,7 +26,7 @@ const SearchItem = (
                     </div>
                 </div>
                 <div className={"col-1"}>
-                    <h2 className={"text-warning float-end"}>26</h2>
+                    <ReviewScore imdbID={movie.imdbID}/>
                 </div>
             </div>
         </li>

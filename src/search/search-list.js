@@ -7,11 +7,13 @@ import {useParams} from "react-router-dom";
 
 const SearchList = () => {
     var title = useParams().title;
-    //var title = window.location.href.split("/:")[1];
     const [movies, setMovies] = useState([]);
     const Movie_API = "https://www.omdbapi.com/?apikey=c4ef1217&s="+title ;
     const dispatch = useDispatch();
-    const findmovie = async () =>{
+    const findMovie = async () =>{
+        if (title === undefined || title === '') {
+            return;
+        }
         const response = await axios.get(Movie_API);
         if (response.data.Response === 'False'){
             setMovies([])
@@ -20,8 +22,8 @@ const SearchList = () => {
         }
     }
     useEffect(() => {
-        findmovie();
-    }, [dispatch])
+        findMovie();
+    }, [dispatch, title])
 
     return(
         <>

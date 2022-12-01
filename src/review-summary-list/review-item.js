@@ -12,7 +12,6 @@ const ReviewSummaryListItem = ({review, disable}) => {
     // const scoreText = review.score === 'Score' ? 'col-2' : 'col-2 text-warning';
     const dispatch = useDispatch();
     const deleteReviewHandler = () => {
-        console.log(review._id);
         dispatch(deleteReviewThunk(review._id));
     }
     return (
@@ -29,7 +28,8 @@ const ReviewSummaryListItem = ({review, disable}) => {
                 {
                     disable !== 'imdbID' &&
                     <div className="col-1">
-                       <Link to={`/detail/${review.imdbID}`}> {review.imdbID} </Link>
+                        {review.imdbID === 'IMDB ID' && <div> {review.imdbID} </div>}
+                        {review.imdbID !== 'IMDB ID' && <Link to={`/detail/${review.imdbID}`}> {review.imdbID} </Link>}
                     </div>
                 }
                 <div className='col-1 text-warning d-flex justify-content-center'>
