@@ -12,8 +12,8 @@ const UserList = () => {
     setUsers(users);
   };*/
   const dispatch = useDispatch();
-  const deleteUserBtn = () => {
-    dispatch(deleteUserThunk(users._id));
+  const deleteUserBtn = (id) => {
+    dispatch(deleteUserThunk(id));
   };
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const UserList = () => {
             {user.username}{" "}
             <button
               className="btn btn-danger float-end"
-              onClick={deleteUserBtn}
+              onClick={() => deleteUserBtn(user._id)}
             >
               Delete
             </button>

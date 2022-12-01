@@ -1,5 +1,6 @@
 import axios from "axios";
 const BASE_URL = "http://localhost:4000";
+const api = axios.create({ withCredentials: true });
 
 export const createUser = async () => {};
 
@@ -9,12 +10,12 @@ export const findAllUsers = async () => {
 };
 
 export const register = async (user) => {
-  const response = await axios.post(`${BASE_URL}/register`, user);
+  const response = await api.post(`${BASE_URL}/register`, user);
   return response.data;
 };
 
 export const login = async (user) => {
-  const response = await axios.post(`${BASE_URL}/login`, user);
+  const response = await api.post(`${BASE_URL}/login`, user);
   return response.data;
 };
 
@@ -34,6 +35,9 @@ export const deleteUser = async (uid) => {
 };
 
 export const updateUser = async (userUpdates) => {
-  const response = await axios.put(`${BASE_URL}/users/${userUpdates._id}`, userUpdates);
+  const response = await axios.put(
+    `${BASE_URL}/users/${userUpdates._id}`,
+    userUpdates
+  );
   return response.data;
 };
