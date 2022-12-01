@@ -1,32 +1,36 @@
 import { useDispatch, useSelector } from "react-redux";
-import { findAllUsersThunk, logoutThunk } from "./users-thunks";
-import { Link, useNavigate } from "react-router-dom";
+import {findAllUsersThunk, loginThunk, logoutThunk} from "./users-thunks";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import { useEffect } from "react";
 import ReviewSummaryList from "../review-summary-list";
 import { findBookMarkThunk } from "../services/bookmark-thunk";
 
 const Profile = () => {
+  const username = useParams().username;
   const randomNumber = Math.floor(Math.random() * 10);
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.users);
-  const { users } = useSelector((state) => state.users);
-
+  const { currentUser, users } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
   useEffect(() => {
-    // findAllUsers();
     dispatch(findAllUsersThunk());
   }, []);
+
+  useEffect(() => {
+    dispatch(loginThunk());
+  }, []);
+
   const handleLogout = () => {
     dispatch(logoutThunk());
     navigate("/");
   };
 
-  console.log(currentUser);
   const { bookmark, loading } = useSelector((state) => state.bookmarks);
   useEffect(() => {
-    dispatch(findBookMarkThunk(currentUser._id));
-  }, []);
-  // console.log(bookmark);
+    if (currentUser) {
+      dispatch(findBookMarkThunk(currentUser._id));
+    }
+  }, [currentUser]);
 
   return (
     <>
@@ -43,11 +47,11 @@ const Profile = () => {
                 />
               </div>
               <div className="col-6">
-                <h5>Username: {currentUser.username}</h5>
-                <h5>Bio: {currentUser.bio}</h5>
-                <h5>First Name: {currentUser.firstName}</h5>
-                <h5>Last Name: {currentUser.lastName}</h5>
-                <h5>Email: {currentUser.email}</h5>
+                <h5>Username: {currentUser && currentUser.username}</h5>
+                <h5>Bio: {currentUser && currentUser.bio}</h5>
+                <h5>First Name: {currentUser && currentUser.firstName}</h5>
+                <h5>Last Name: {currentUser && currentUser.lastName}</h5>
+                <h5>Email: {currentUser && currentUser.email}</h5>
                 <Link to="/edit-profile">
                   <button className="btn btn-primary">Edit</button>
                 </Link>
@@ -73,10 +77,13 @@ const Profile = () => {
           </div>
         </div>
 
-        <ReviewSummaryList
-          title={"Your Reviews"}
-          username={currentUser.username}
-        />
+        {
+          currentUser &&
+          <ReviewSummaryList
+              title={"Your Reviews"}
+              username={currentUser.username}
+          />
+        }
 
         <div>
           <div className="list-group mt-4">

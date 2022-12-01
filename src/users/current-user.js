@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import { profileThunk } from "./users-thunks";
+import {loginThunk, profileThunk} from "./users-thunks";
 import { useDispatch, useSelector } from "react-redux";
 
 const CurrentUser = ({ children }) => {
   const { currentUser } = useSelector((state) => state.users);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(profileThunk());
+    dispatch(loginThunk());
   }, []);
   return children;
 };

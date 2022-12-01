@@ -10,7 +10,6 @@ const Navigation = () => {
 
   const screens = [];
   if (currentUser && currentUser.type === "ADMIN") {
-    screens.push("users");
     screens.push("profile");
   } else if (currentUser) {
     screens.push("profile");
