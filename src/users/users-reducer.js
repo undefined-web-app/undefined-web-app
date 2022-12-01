@@ -73,7 +73,7 @@ const usersReducer = createSlice({
     },
     [deleteUserThunk.fulfilled]: (state, action) => {
       state.loading = false;
-      state.users = state.users.filter((u) => u._id !== action.payload._id);
+      state.users = state.users.filter((u) => u._id !== action.payload);
     },
   },
 });

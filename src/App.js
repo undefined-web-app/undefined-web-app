@@ -18,9 +18,12 @@ import Detail from "./detail/index";
 import bookmarkReducer from "./reducers/bookmark-reducer";
 import EditProfile from "./users/edit-profile";
 
-
 const store = configureStore({
-  reducer: { reviews: reviewsReducer, users: usersReducer, bookmarks: bookmarkReducer },
+  reducer: {
+    reviews: reviewsReducer,
+    users: usersReducer,
+    bookmarks: bookmarkReducer,
+  },
 });
 
 function App() {
