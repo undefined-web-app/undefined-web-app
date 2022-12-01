@@ -10,7 +10,6 @@ const Profile = () => {
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.users);
   const { users } = useSelector((state) => state.users);
-
   const dispatch = useDispatch();
   useEffect(() => {
     // findAllUsers();
@@ -21,12 +20,10 @@ const Profile = () => {
     navigate("/");
   };
 
-  console.log(currentUser);
   const { bookmark, loading } = useSelector((state) => state.bookmarks);
   useEffect(() => {
     dispatch(findBookMarkThunk(currentUser._id));
   }, []);
-  // console.log(bookmark);
 
   return (
     <>
@@ -83,19 +80,27 @@ const Profile = () => {
             <div className="list-group-item">
               <h5>Book marks</h5>
               <ul className={"list-group"}>
-                {bookmark.map((bookmark_item) => (
-                  <li className={"list-group-item"} key={bookmark_item._id}>
-                    <div className={"row"}>
-                      <div className={"col-1"}>
-                        <img src={bookmark_item.Poster} height={100}></img>
-                      </div>
-                      <div className={"col-9 text-center"}>
-                        <p>Movie title: {bookmark_item.title}</p>
-                        <p>Movie ID: {bookmark_item.imdbID}</p>
-                      </div>
-                    </div>
-                  </li>
-                ))}
+                {
+                  bookmark.map(bookmark_item =>(
+                      <li className={"list-group-item"}>
+                        <a className={"text-decoration-none"} href={"/detail/"+bookmark_item.imdbID}>
+                        <div className={"row"}>
+                          <div className={"col-1"}>
+                            <img className={"ms-2"} src={bookmark_item.Poster} height={100}></img>
+                          </div>
+                          <div className={"col-9 text-center"}>
+                            <p className={"mt-3"}>
+                              Movie title: { bookmark_item.title}
+                            </p>
+                            <p>
+                              Movie ID: { bookmark_item.imdbID}
+                            </p>
+                          </div>
+                        </div>
+                        </a>
+                      </li>
+                  ))
+                }
               </ul>
             </div>
           </div>
