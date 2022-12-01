@@ -9,12 +9,7 @@ const Profile = () => {
   const username = useParams().username;
   const randomNumber = Math.floor(Math.random() * 10);
   const navigate = useNavigate();
-<<<<<<< HEAD
   const { currentUser, users } = useSelector((state) => state.users);
-=======
-  const { currentUser } = useSelector((state) => state.users);
-  const { users } = useSelector((state) => state.users);
->>>>>>> 894bc99dbe6c035abde1cfcee9bd1936a0226d4f
   const dispatch = useDispatch();
 
   useEffect(() => {
