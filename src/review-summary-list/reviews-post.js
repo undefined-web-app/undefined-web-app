@@ -37,13 +37,17 @@ const ReviewsPost = (
                     <label className={"float-start"}>Score:</label>
                 </div>
                 <div className={"col-8"}>
-                    <input className={"form-range"} type="range" id="customRange3" min="0" max="10" onChange={onSlideChange} disabled={disable}/>
+                    {currentUser && currentUser.type==="REVIEWER" && <input className={"form-range"} type="range" id="customRange3" min="0" max="10" onChange={onSlideChange} disabled={disable}/>}
+                    {(!currentUser || currentUser.type !== "REVIEWER") && <div>ONLY LOGGED IN <span className="fw-bold">REVIEWER</span> CAN DROP A SCORE FOR A MOVIE</div>}
                 </div>
-                <div className={"col-1 ms-2"}>
-                    {score >= 8 && <h2 className="text-success">{score}</h2> }
-                    {5 <= score && score <= 7 && <h2 className="text-warning">{score}</h2> }
-                    {0 <= score && score <= 4 && <h2 className="text-danger">{score}</h2> }
-                </div>
+                {
+                    currentUser && currentUser.type === "REVIEWER" &&
+                    <div className={"col-1 ms-2"}>
+                        {score >= 8 && <h2 className="text-success">{score}</h2>}
+                        {5 <= score && score <= 7 && <h2 className="text-warning">{score}</h2>}
+                        {0 <= score && score <= 4 && <h2 className="text-danger">{score}</h2>}
+                    </div>
+                }
             </div>
             <div className={"mt-4 text-center row"}>
                 <div className={"col-2"}>
