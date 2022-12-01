@@ -2,7 +2,7 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import React from "react";
-import {CreateBookMarkThunk} from "../services/bookmark-thunk";
+import {CreateBookMarkThunk, findBookMarkThunk} from "../services/bookmark-thunk";
 
 const MovieDesciption = (
     {
@@ -10,7 +10,9 @@ const MovieDesciption = (
     }
 ) =>{
     const { currentUser } = useSelector((state) => state.users);
-
+    const {bookmark,loading} = useSelector(state => state.bookmarks)
+    
+    var buttonfunction = false;
     const [movie, setMovie] = useState([]);
     const Movie_API = "https://www.omdbapi.com/?apikey=c4ef1217&i="+imdbID ;
     const dispatch = useDispatch();
@@ -25,7 +27,21 @@ const MovieDesciption = (
     useEffect(() => {
         findmovie();
     }, [])
+    useEffect(() => {
+        currentUser && dispatch(findBookMarkThunk(currentUser._id));
+    }, [currentUser])
+    const onclickhandler = () => {
+        dispatch(CreateBookMarkThunk({
+             user_id: currentUser._id, imdbID: imdbID, title: movie.Title, Poster: movie.Poster
+         }))
+    }
+    console.log(movie);
+     bookmark.map(b => {
+         if (b.imdbID == movie.imdbID){
 
+             buttonfunction = true;
+         }
+     })
 
     return (
         <div className={"card"}>
@@ -34,10 +50,10 @@ const MovieDesciption = (
                     <h2 className={"text-dark"}>{movie.Title}</h2>
                 </div>
                 <div className={"float-end position-relative"}>
-                    <button onClick={()=>dispatch(CreateBookMarkThunk(
-                        {
-                            user_id: currentUser._id, imdbID: imdbID, title: movie.Title, Poster: movie.Poster
-                        }))} className={"btn btn-danger"}>bookmark</button>
+                    {
+                    <button onClick={onclickhandler} disabled={buttonfunction}
+                        className={`btn btn-danger`}>bookmark</button>
+                    }
                 </div>
             </div>
             <div className={"row card-body"}>
