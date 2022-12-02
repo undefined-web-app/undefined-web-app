@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
+  addLikeThunk,
   deleteUserThunk,
   findAllUsersThunk,
   loginThunk,
@@ -8,6 +9,7 @@ import {
   registerThunk,
   updateUserThunk,
 } from "./users-thunks";
+import currentUser from "./current-user";
 
 const usersReducer = createSlice({
   name: "users",
@@ -75,6 +77,13 @@ const usersReducer = createSlice({
       state.loading = false;
       state.users = state.users.filter((u) => u._id !== action.payload);
     },
+    [addLikeThunk.fulfilled]: (state, action) => {
+      const username = action.payload.username;
+      const uid = action.payload.uid;
+      const userIdx = state.users.findIndex((u) => u._id === payload._id);
+      state.users[userIdx].likes.push(username);
+      state.currentUser = state.users[userIdx];
+    }
   },
 });
 

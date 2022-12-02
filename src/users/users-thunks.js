@@ -43,3 +43,8 @@ export const deleteUserThunk = createAsyncThunk(
   "deleteUser",
   async (uid) => await deleteUser(uid)
 );
+
+export const addLikeThunk = createAsyncThunk(
+    "addLike",
+    async (uid, username) => await addLike(uid, username)
+)
