@@ -7,6 +7,7 @@ import {
   profileThunk,
   registerThunk,
   updateUserThunk,
+  findUserByUsernameThunk,
 } from "./users-thunks";
 
 const usersReducer = createSlice({
@@ -16,6 +17,7 @@ const usersReducer = createSlice({
     users: [],
     currentUser: null,
     error: null,
+    publicProfile: null,
   },
   reducers: {
     updateProfile(state, action) {
@@ -34,6 +36,9 @@ const usersReducer = createSlice({
     },
   },
   extraReducers: {
+    [findUserByUsernameThunk.fulfilled]: (state, action) => {
+      state.publicProfile = action.payload;
+    },
     [findAllUsersThunk.fulfilled]: (state, action) => {
       state.users = action.payload;
     },

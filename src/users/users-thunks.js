@@ -7,6 +7,7 @@ import {
   logout,
   updateUser,
   deleteUser,
+  findUserByUsername,
 } from "./users-service";
 
 export const findAllUsersThunk = createAsyncThunk(
@@ -42,4 +43,9 @@ export const updateUserThunk = createAsyncThunk(
 export const deleteUserThunk = createAsyncThunk(
   "deleteUser",
   async (uid) => await deleteUser(uid)
+);
+
+export const findUserByUsernameThunk = createAsyncThunk(
+  "findUserByUsername",
+  async (username) => await findUserByUsername(username)
 );
