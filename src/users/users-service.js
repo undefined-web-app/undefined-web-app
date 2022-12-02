@@ -50,4 +50,10 @@ export const addLike = async (uid, username) => {
       username
   );
   return response.data;
-}
+};
+
+export const findUserByUsername = async (username) => {
+  const response = await api.get(`${BASE_URL}/profile/${username}`);
+  const user = response.data;
+  return user;
+};
