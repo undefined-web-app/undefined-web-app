@@ -3,7 +3,7 @@ import ReviewSummaryListItem from "./review-item";
 import { useEffect } from "react";
 import { findReviewsThunk } from "../services/reviews-thunk";
 
-const ReviewSummaryList = ({ title, username, imdbID, length, disable }) => {
+const ReviewSummaryList = ({ title, username, imdbID, length, type, disable }) => {
   // const { currentUser } = useSelector((state) => state.users);
   const { reviews, loading } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ReviewSummaryList = ({ title, username, imdbID, length, disable }) => {
     content: "Review",
     score: "Score",
     time: "Posted On",
-    imdbID: "IMDB ID",
+    imdbID: "IMDB",
   };
   return (
     <>
@@ -32,9 +32,10 @@ const ReviewSummaryList = ({ title, username, imdbID, length, disable }) => {
               {reviews
                 .map(
                   (review, index) =>
-                    (review.username === username ||
+                    ((review.username === username ||
                       review.imdbID === imdbID ||
-                      (username === undefined && imdbID === undefined)) && (
+                      (username === undefined && imdbID === undefined)) &&
+                        review.type === type) && (
                       <ReviewSummaryListItem
                         key={index}
                         review={review}

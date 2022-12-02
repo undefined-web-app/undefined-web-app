@@ -22,7 +22,7 @@ const Register = () => {
       return;
     }
     setError(null);
-    const newUser = { username, password };
+    const newUser = { username, password, type: 'NORMAL_USER' };
     dispatch(registerThunk(newUser));
     // setTimeout(5000);
     navigate("/");

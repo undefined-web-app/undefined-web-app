@@ -8,12 +8,11 @@ import {deleteReviewThunk} from "../services/reviews-thunk";
 const ReviewSummaryListItem = ({review, disable}) => {
     const postDate = timeConverter(review.time);
     const { currentUser } = useSelector((state) => state.users);
-    // const contentWidth = disable === 'imdbID' ? 'col-6' : 'col-4';
-    // const scoreText = review.score === 'Score' ? 'col-2' : 'col-2 text-warning';
     const dispatch = useDispatch();
     const deleteReviewHandler = () => {
         dispatch(deleteReviewThunk(review._id));
     }
+    const contentCol = disable === 'Score' ? 'col-5' : 'col-4';
     return (
         <li className="list-group-item">
             <div className="row">
@@ -27,20 +26,23 @@ const ReviewSummaryListItem = ({review, disable}) => {
                 </div>
                 {
                     disable !== 'imdbID' &&
-                    <div className="col-1">
-                        {review.imdbID === 'IMDB ID' && <div> {review.imdbID} </div>}
-                        {review.imdbID !== 'IMDB ID' && <Link to={`/detail/${review.imdbID}`}> {review.imdbID} </Link>}
+                    <div className={'col-2'}>
+                        {review.imdbID === 'IMDB' && <div> {review.imdbID} </div>}
+                        {review.imdbID !== 'IMDB' && <Link to={`/detail/${review.imdbID}`}> {review.imdbID} </Link>}
                     </div>
                 }
-                <div className='col-1 text-warning d-flex justify-content-center'>
-                    {review.score}
-                </div>
                 <div className="col-2">
                     {typeof review.time === "string" ? review.time : postDate}
                 </div>
-                <div className='col'>
+                <div className={contentCol}>
                     {review.content}
                 </div>
+                {
+                    disable !== "Score" &&
+                    <div className='col-1 text-warning d-flex justify-content-center'>
+                        {review.score}
+                    </div>
+                }
                 {
                     currentUser !== null && currentUser.type === 'ADMIN' && review.score !== 'Score' &&
                     <div className='col-1 d-flex justify-content-center'>

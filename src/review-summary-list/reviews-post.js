@@ -20,11 +20,12 @@ const ReviewsPost = (
             content: content,
             score: score,
             time: Date.now(),
-            imdbID: imdbID
+            imdbID: imdbID,
+            type: currentUser.type
         }
-        console.log(newReview)
         dispatch(createReviewThunk(newReview));
     }
+    const submitDisable = (currentUser && currentUser.type === "ADMIN") ? true : false;
     const disable = !currentUser;
     return(
         <ul className="list-group">
@@ -38,7 +39,7 @@ const ReviewsPost = (
                 </div>
                 <div className={"col-8"}>
                     {currentUser && currentUser.type==="REVIEWER" && <input className={"form-range"} type="range" id="customRange3" min="0" max="10" onChange={onSlideChange} disabled={disable}/>}
-                    {(!currentUser || currentUser.type !== "REVIEWER") && <div>ONLY LOGGED IN <span className="fw-bold">REVIEWER</span> CAN DROP A SCORE FOR A MOVIE</div>}
+                    {(!currentUser || currentUser.type !== "REVIEWER") && <div>ONLY LOGGED IN <span className="fw-bold">REVIEWER</span> CAN DROP A SCORE</div>}
                 </div>
                 {
                     currentUser && currentUser.type === "REVIEWER" &&
@@ -49,18 +50,19 @@ const ReviewsPost = (
                     </div>
                 }
             </div>
-            <div className={"mt-4 text-center row"}>
+            <div className={"mt-4 row"}>
                 <div className={"col-2"}>
                 <label className={"float-start"}>Review:</label>
                 </div>
                 <div className={"col-8"}>
-                <textarea className="form-control " id="exampleTextarea" rows="3" onChange={onContentChange} disabled={disable}></textarea>
+                    { currentUser && (currentUser.type === "REVIEWER" || currentUser.type === "NORMAL_USER") && <textarea className="form-control " id="exampleTextarea" rows="3" onChange={onContentChange} disabled={disable}></textarea> }
+                    { (!currentUser || (currentUser && (currentUser.type === "ADMIN"))) && <div>ONLY LOGGED IN <span className="fw-bold">REVIEWER</span> OR <span className="fw-bold">NORMAL USER</span> CAN DROP A REVIEW</div>   }
                 </div>
             </div>
                 {
                     currentUser &&
                     <div className={"mt-3 text-center mb-3"}>
-                        <button type="submit" className="btn btn-primary me-2" onClick={publishClickHandler}>Submit
+                        <button type="submit" className="btn btn-primary me-2" onClick={publishClickHandler} disabled={submitDisable}>Submit
                         </button>
                     </div>
                 }

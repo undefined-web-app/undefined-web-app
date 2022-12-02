@@ -12,12 +12,12 @@ const ReviewScore = ({imdbID}) => {
     const [score, setScore] = useState('No Score');
     const dispatch = useDispatch();
     const findAvScore = async () => {
-        const curReview = reviews.filter(r => r.imdbID === imdbID);
+        const curReview = reviews.filter(r => r.imdbID === imdbID && r.type === "REVIEWER");
         console.log(imdbID);
         if (curReview.length > 0) {
             let total = 0
             curReview.map(r => r.score ? total += r.score : 0);
-            setScore(total / curReview.length);
+            setScore((total / curReview.length).toFixed(1));
         }
         else {
             setScore('No Score');

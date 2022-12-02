@@ -16,7 +16,10 @@ const Detail = () => {
                 <MovieDescription imdbID={imdbID}/>
             </div>
             <div className={"mb-3"}>
-                <ReviewSummaryList imdbID={imdbID} title={'Reviews'}/>
+                <ReviewSummaryList imdbID={imdbID} title={'Reviewers\' Reviews'} type={'REVIEWER'}/>
+            </div>
+            <div className={"mb-3"}>
+                <ReviewSummaryList imdbID={imdbID} title={'Normal Users\' Reviews'} type={'NORMAL_USER'} disable={'Score'}/>
             </div>
             <div className={"mb-3"}>
                 <ReviewsPost imdbID={imdbID}/>

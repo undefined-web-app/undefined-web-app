@@ -116,7 +116,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <button className="btn btn-danger mt-4" onClick={handleLogout}>
+      <button className="btn btn-danger mt-4 mb-4" onClick={handleLogout}>
         Logout
       </button>
     </>
