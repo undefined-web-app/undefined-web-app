@@ -43,3 +43,15 @@ export const updateUser = async (userUpdates) => {
   );
   return response.data;
 };
+
+export const findUserById = async (username) => {
+  const response = await api.get(`${BASE_URL}/profile/${username}`);
+  const user = response.data;
+  return user;
+};
+
+export const findUserByUsername = async (username) => {
+  const response = await api.get(`${BASE_URL}/profile/${username}`);
+  const user = response.data;
+  return user;
+};

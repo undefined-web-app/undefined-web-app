@@ -17,6 +17,8 @@ import CurrentUser from "./users/current-user";
 import Detail from "./detail/index";
 import bookmarkReducer from "./reducers/bookmark-reducer";
 import EditProfile from "./users/edit-profile";
+import UserProfile from "./users/user-profile";
+import PublicProfile from "./users/public-profile";
 
 const store = configureStore({
   reducer: {
@@ -41,8 +43,10 @@ function App() {
               {/*<Route path="/users" element={<UserList />} />*/}
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/profile/:username" element={<Profile />} />
+              {/*<Route path="/profile" element={<Profile />} />*/}
+              {/*<Route path="/profile/:username" element={<Profile />} />*/}
+              <Route path="/profile/" element={<UserProfile />} />
+              <Route path="/profile/:username" element={<PublicProfile />} />
               <Route path="/edit-profile" element={<EditProfile />} />
               {/*<Route path="/login"*/}
               {/*       element={<Login/>}/>*/}

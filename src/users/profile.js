@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import {findAllUsersThunk, loginThunk, logoutThunk} from "./users-thunks";
-import {Link, useNavigate, useParams} from "react-router-dom";
+import { findAllUsersThunk, loginThunk, logoutThunk } from "./users-thunks";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import ReviewSummaryList from "../review-summary-list";
 import { findBookMarkThunk } from "../services/bookmark-thunk";
+import UserDetail from "./user-detail";
 
 const Profile = () => {
   const username = useParams().username;
@@ -34,10 +35,10 @@ const Profile = () => {
 
   return (
     <>
-      <h1>Profile</h1>
       {currentUser && <h2>Welcome {currentUser.username}</h2>}
       <div className="container">
-        <div className="list-group">
+        <UserDetail />
+        {/*<div className="list-group">
           <div className="list-group-item">
             <div className="row">
               <div className="col-6">
@@ -58,7 +59,7 @@ const Profile = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>*/}
 
         <div>
           <div className="list-group mt-4">
@@ -77,40 +78,42 @@ const Profile = () => {
           </div>
         </div>
 
-        {
-          currentUser &&
+        {currentUser && (
           <ReviewSummaryList
-              title={"Your Reviews"}
-              username={currentUser.username}
+            title={"Your Reviews"}
+            username={currentUser.username}
           />
-        }
+        )}
 
         <div>
           <div className="list-group mt-4">
             <div className="list-group-item">
               <h5>Book marks</h5>
               <ul className={"list-group"}>
-                {
-                  bookmark.map(bookmark_item =>(
-                      <li className={"list-group-item"}>
-                        <a className={"text-decoration-none"} href={"/detail/"+bookmark_item.imdbID}>
-                        <div className={"row"}>
-                          <div className={"col-1"}>
-                            <img className={"ms-2"} src={bookmark_item.Poster} height={100}></img>
-                          </div>
-                          <div className={"col-9 text-center"}>
-                            <p className={"mt-3"}>
-                              Movie title: { bookmark_item.title}
-                            </p>
-                            <p>
-                              Movie ID: { bookmark_item.imdbID}
-                            </p>
-                          </div>
+                {bookmark.map((bookmark_item) => (
+                  <li className={"list-group-item"}>
+                    <a
+                      className={"text-decoration-none"}
+                      href={"/detail/" + bookmark_item.imdbID}
+                    >
+                      <div className={"row"}>
+                        <div className={"col-1"}>
+                          <img
+                            className={"ms-2"}
+                            src={bookmark_item.Poster}
+                            height={100}
+                          ></img>
                         </div>
-                        </a>
-                      </li>
-                  ))
-                }
+                        <div className={"col-9 text-center"}>
+                          <p className={"mt-3"}>
+                            Movie title: {bookmark_item.title}
+                          </p>
+                          <p>Movie ID: {bookmark_item.imdbID}</p>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
