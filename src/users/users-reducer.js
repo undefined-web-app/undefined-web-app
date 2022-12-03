@@ -84,10 +84,10 @@ const usersReducer = createSlice({
     },
     [addLikeThunk.fulfilled]: (state, action) => {
       const username = action.payload.username;
-      const uid = action.payload.uid;
-      const userIdx = state.users.findIndex((u) => u._id === payload._id);
-      state.users[userIdx].likes.push(username);
-      state.currentUser = state.users[userIdx];
+      const liked = action.payload.liked;
+      console.log(state.users);
+      state.publicProfile.likes.push(username);
+      state.publicProfile = state.publicProfile;
     }
   },
 });

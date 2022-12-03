@@ -44,10 +44,10 @@ export const updateUser = async (userUpdates) => {
   return response.data;
 };
 
-export const addLike = async (uid, username) => {
+export const addLike = async (liked, username) => {
   const response = await api.put(
-      `${BASE_URL}/users/likes/${uid}`,
-      username
+      `${BASE_URL}/users/likes/${liked}`,
+      {liked, username}
   );
   return response.data;
 };

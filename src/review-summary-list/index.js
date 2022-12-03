@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { findReviewsThunk } from "../services/reviews-thunk";
 
 const ReviewSummaryList = ({ title, username, imdbID, length, type, disable }) => {
-  // const { currentUser } = useSelector((state) => state.users);
   const { reviews, loading } = useSelector((state) => state.reviews);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -17,9 +16,11 @@ const ReviewSummaryList = ({ title, username, imdbID, length, type, disable }) =
     time: "Posted On",
     imdbID: "IMDB",
   };
+  if (type === "ADMIN") {
+    return (<></>)
+  }
   return (
     <>
-      {/*{currentUser && <h2>Welcome {currentUser.username}</h2>}*/}
       <ul className="list-group mt-3">
         <li className="list-group-item fw-bold">
           <h5>{title}</h5>

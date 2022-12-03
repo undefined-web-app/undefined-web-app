@@ -4,6 +4,8 @@ import ReviewSummaryList from "../review-summary-list";
 import { useDispatch, useSelector } from "react-redux";
 import BookMarks from "./book-marks";
 import { logoutThunk } from "./users-thunks";
+import React from "react";
+import LikedUsers from "./liked-users";
 
 const UserProfile = () => {
   const navigate = useNavigate();
@@ -17,12 +19,8 @@ const UserProfile = () => {
   return (
     <>
       <UserDetail username={username} />
-      {currentUser && (
-        <ReviewSummaryList
-          title={"Your Reviews"}
-          username={currentUser.username}
-        />
-      )}
+      {currentUser && <LikedUsers users={currentUser.likes}/>}
+      {currentUser && <ReviewSummaryList title="Your Reviews" username={currentUser.username} type={currentUser.type} disable={currentUser.type === 'NORMAL_USER' ? 'Score' : undefined}/>}
       <BookMarks username={username} />
       <button className="btn btn-danger mt-4" onClick={handleLogout}>
         Logout

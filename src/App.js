@@ -11,7 +11,6 @@ import "font-awesome/css/font-awesome.min.css";
 import usersReducer from "./users/users-reducer";
 import Register from "./users/register";
 import Login from "./users/login";
-import Profile from "./users/profile";
 import Navigation from "./navigation";
 import CurrentUser from "./users/current-user";
 import Detail from "./detail/index";
@@ -40,16 +39,11 @@ function App() {
               <Route path="/search/:title" element={<Search />} />
               <Route path="/search" element={<Search />} />
               <Route path="/detail/:imdbID" element={<Detail />} />
-              {/*<Route path="/users" element={<UserList />} />*/}
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              {/*<Route path="/profile" element={<Profile />} />
-              <Route path="/profile/:username" element={<Profile />} />*/}
               <Route path="/profile/" element={<UserProfile />} />
               <Route path="/profile/:username" element={<PublicProfile />} />
               <Route path="/edit-profile" element={<EditProfile />} />
-              {/*<Route path="/login"*/}
-              {/*       element={<Login/>}/>*/}
             </Routes>
           </div>
         </BrowserRouter>

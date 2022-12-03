@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import 'font-awesome/css/font-awesome.min.css'
+import './font-awesome-pro/css/all.css';
 import 'bootswatch/dist/lux/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
