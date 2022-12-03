@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const BOOKMARK_API = "http://localhost:4000/bookmark";
+// const BOOKMARK_API = "http://localhost:4000/bookmark";
+const BOOKMARK_API = "https://undefined-server-app.herokuapp.com/bookmark";
 
 export const createBookmark = async (bookmark) => {
   const response = await axios.post(BOOKMARK_API, bookmark);
