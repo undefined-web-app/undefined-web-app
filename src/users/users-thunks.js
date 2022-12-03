@@ -31,11 +31,6 @@ export const logoutThunk = createAsyncThunk(
   async () => await logout()
 );
 
-export const profileThunk = createAsyncThunk(
-  "profile",
-  async () => await profile()
-);
-
 export const updateUserThunk = createAsyncThunk(
   "updateUser",
   async (userUpdates) => await updateUser(userUpdates)

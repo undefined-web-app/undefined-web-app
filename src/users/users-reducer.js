@@ -15,7 +15,7 @@ import currentUser from "./current-user";
 const usersReducer = createSlice({
   name: "users",
   initialState: {
-    loading: false,
+    loading: true,
     users: [],
     currentUser: null,
     error: null,
@@ -46,27 +46,32 @@ const usersReducer = createSlice({
     },
     [loginThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+      state.loading = false;
+    },
+    [loginThunk.pending]: (state, action) => {
+      state.currentUser = action.payload;
+      state.loading = true;
     },
     [loginThunk.rejected]: (state, action) => {
       state.error = action.payload;
       state.currentUser = null;
+      state.loading = false;
     },
     [logoutThunk.fulfilled]: (state, action) => {
       state.currentUser = null;
     },
     [registerThunk.fulfilled]: (state, action) => {
       state.currentUser = action.payload;
+      state.loading = false;
+    },
+    [registerThunk.pending]: (state, action) => {
+      state.currentUser = action.payload;
+      state.loading = true;
     },
     [registerThunk.rejected]: (state, action) => {
       state.error = action.payload;
       state.currentUser = null;
-    },
-    [profileThunk.fulfilled]: (state, action) => {
-      state.currentUser = action.payload;
-    },
-    [profileThunk.rejected]: (state, action) => {
-      // state.error = action.payload;
-      // state.currentUser = null;
+      state.loading = false;
     },
     [updateUserThunk.fulfilled]: (state, action) => {
       const payload = action.payload;
