@@ -40,10 +40,8 @@ const MovieDesciption = (
              user_id: currentUser._id, imdbID: imdbID, title: movie.Title, Poster: movie.Poster
          }))
     }
-    console.log(movie);
      bookmark.map(b => {
          if (b.imdbID == movie.imdbID){
-
              buttonfunction = true;
          }
      })

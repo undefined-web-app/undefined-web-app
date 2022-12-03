@@ -44,7 +44,7 @@ const ReviewSummaryListItem = ({review, disable}) => {
                     </div>
                 }
                 {
-                    currentUser !== null && currentUser.type === 'ADMIN' && review.score !== 'Score' &&
+                    currentUser && currentUser.type === 'ADMIN' && review.score !== 'Score' &&
                     <div className='col-1 d-flex justify-content-center'>
                         <button className="btn btn-danger" onClick={deleteReviewHandler}>Delete</button>
                     </div>

@@ -16,13 +16,12 @@ export const register = async (user) => {
 
 export const login = async (user) => {
   const response = await api.post(`${BASE_URL}/login`, user);
-  console.log(response.data);
+
   return response.data;
 };
 
 export const profile = async () => {
   const response = await api.post(`${BASE_URL}/profile`);
-
   return response.data;
 };
 

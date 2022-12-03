@@ -21,7 +21,6 @@ const bookmarkSlice = createSlice({
                                               (state,  {payload} ) => {
                                                   state.loading = false
                                                   state.bookmark = payload
-                                                  console.log(state.bookmark)
                                               },
                                           [findBookMarkThunk.rejected]:
                                               (state) => {

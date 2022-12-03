@@ -1,7 +1,8 @@
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerThunk } from "./users-thunks";
 import { useNavigate } from "react-router-dom";
+import {findUserByUsername} from "./users-service";
 
 const Register = () => {
   const { users } = useSelector((state) => state.users);
@@ -10,27 +11,31 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [validatePassword, setValidatePassword] = useState("");
   const [error, setError] = useState(null);
-  const { currentUser } = useSelector((state) => state.users);
+  const { currentUser, loading } = useSelector((state) => state.users);
   const dispatch = useDispatch();
+
   const handleRegisterBtn = () => {
     if (password !== validatePassword) {
       setError("Password must match.");
       return;
     }
-    if (username === users.username) {
-      setError("User already exist.");
-      return;
-    }
     setError(null);
     const newUser = { username, password, type: 'NORMAL_USER' };
     dispatch(registerThunk(newUser));
-    // setTimeout(5000);
-    navigate("/");
+    if (currentUser === null) {
+      setError("User already exist.");
+      return;
+    }
   };
+  useEffect(()=>{
+      if(currentUser){
+          navigate("/");
+      }
+  })
   return (
     <>
       <h1>Register</h1>
-      {error && <div className="alert alert-danger">{error}</div>}
+      {!currentUser && !loading && error && <div className="alert alert-danger">{error}</div>}
       <h5>Username</h5>
       <input
         className="form-control mb-2"
