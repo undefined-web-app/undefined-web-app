@@ -60,7 +60,7 @@ const MovieDesciption = (
                 </div>
             </div>
             <div className={"row card-body"}>
-                <div className={"col-3"}>
+                <div className={"col-3 searchdivouter"}>
                     <img width={150} src={movie.Poster}></img>
                 </div>
                 <div className={"col-7"}>
@@ -70,7 +70,7 @@ const MovieDesciption = (
                     <p>Language: {movie.Language}</p>
                     <p>Description: {movie.Plot}</p>
                 </div>
-                <div className={"col-2 float-end"}>
+                <div className={"col-2 float-end searchdivouter"}>
                     <ReviewScore imdbID={imdbID}/>
                 </div>
             </div>

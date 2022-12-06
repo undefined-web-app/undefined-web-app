@@ -13,7 +13,6 @@ const ReviewScore = ({imdbID}) => {
     const dispatch = useDispatch();
     const findAvScore = async () => {
         const curReview = reviews.filter(r => r.imdbID === imdbID && r.type === "REVIEWER");
-        console.log(imdbID);
         if (curReview.length > 0) {
             let total = 0
             curReview.map(r => r.score ? total += r.score : 0);

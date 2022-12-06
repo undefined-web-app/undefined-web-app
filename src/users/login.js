@@ -15,7 +15,7 @@ const Login = () => {
     const loginUser = { username, password };
     dispatch(loginThunk(loginUser));
     console.log(loginUser);
-    console.log(currentUser);
+
     if(currentUser===null){
         setError("Username and Password didn't match");
         return;
@@ -23,6 +23,7 @@ const Login = () => {
 
   };
     useEffect(()=>{
+        console.log(currentUser);
         if(currentUser){
             navigate("/");
         }
