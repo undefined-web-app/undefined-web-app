@@ -12,8 +12,8 @@ const SearchItem = (
     return(
         <li className={"list-group-item"}>
             <div className={"row mt-2"}>
-                <div className={"col-1"}>
-                    <img src={image} height={150} className="-image" alt="No Infomation"/>
+                <div className={"col-1 searchdivouter"}>
+                    <img src={image} height={150} className="image " alt="No Infomation"/>
                 </div>
                 <div className={"col-9 ms-3 mt-2"}>
                     <div>
@@ -25,7 +25,7 @@ const SearchItem = (
                         <h3 className={"text-dark"}>Year:{movie.Year} ID:{movie.imdbID}</h3>
                     </div>
                 </div>
-                <div className={"col-1"}>
+                <div className={"col-1 searchdivouter"}>
                     <ReviewScore imdbID={movie.imdbID}/>
                 </div>
             </div>

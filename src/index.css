@@ -65,6 +65,37 @@ code {
   }
 }
 
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .searchdivouter img {
+    display: none;
+  }
+  .searchdivouter h2 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .searchdivouter img {
+    display: none;
+  }
+  .searchdivouter h2 {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .searchdivouter img{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .searchdivouter img{
+    display: table;
+  }
+}
+
 .delete-button-text {
   font-weight: bold;
   color: white;

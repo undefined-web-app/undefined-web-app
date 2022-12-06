@@ -25,7 +25,7 @@ const BookMarks = () => {
                     href={"/detail/" + bookmark_item.imdbID}
                   >
                     <div className={"row"}>
-                      <div className={"col-1"}>
+                      <div className={"col-1 searchdivouter"}>
                         <img
                           className={"ms-2"}
                           src={bookmark_item.Poster}
