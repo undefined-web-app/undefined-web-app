@@ -10,13 +10,13 @@ const UserDetail = ({ username }) => {
       <div className="list-group">
         <div className="list-group-item">
           <div className="row">
-            <div className="col-6">
+            <div className="col-xxl-6 col-xl-6 col-lg-6 d-none d-lg-block">
               <img
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_p8GBXlnS_LCaQrNVA_Y4Sqc0SYHJHrJdcAOc-FzSspzaReqRjcaAaVvB8CfYICIaPjA&usqp=CAU"
                 alt="Profile"
               />
             </div>
-            <div className="col-6">
+            <div className="col-xxl-6 col-xl-6 col-lg-6 col-md-12">
               <h5>Username: {currentUser && currentUser.username}</h5>
               <h5>Bio: {currentUser && currentUser.bio}</h5>
               <h5>First Name: {currentUser && currentUser.firstName}</h5>
