@@ -11,3 +11,61 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.mydivouter{
+ position:relative;
+}
+
+.mydivoverlap{
+  position: relative;
+  z-index: 1;
+}
+
+.mybuttonoverlap{
+  position: absolute;
+  display: none;
+  border-radius: 10px;
+  background-color: red;
+  opacity: 60%;
+  height: 100%;
+  font-size: 13px;
+  border-color: grey;
+  z-index: 10;
+}
+
+@media screen and (min-width: 0px) and (max-width: 768px) {
+  .mydivouter:hover .mybuttonoverlap {
+    display: table;
+    margin-left: 65%;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .mydivouter:hover .mybuttonoverlap {
+    display: table;
+    margin-left: 34%;
+    width: 66%;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .mydivouter:hover .mybuttonoverlap {
+    display: table;
+    margin-left: 33%;
+    width: 67%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .mydivouter:hover .mybuttonoverlap {
+    display: table;
+    margin-left: 50%;
+    width: 50%;
+  }
+}
+
+.delete-button-text {
+  font-weight: bold;
+  color: white;
+}

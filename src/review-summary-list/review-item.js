@@ -12,11 +12,17 @@ const ReviewSummaryListItem = ({review, disable}) => {
     const deleteReviewHandler = () => {
         dispatch(deleteReviewThunk(review._id));
     }
-    const contentCol = disable === 'Score' ? 'col-5' : 'col-4';
+    const contentCol = disable === 'Score' ? 'col-4 col-xl-4 col-md-6' : 'col-4 col-xl-4 col-md-6';
     return (
         <li className="list-group-item">
-            <div className="row">
-                <div className="col-2">
+            <div className="row mydivouter">
+                {
+                    currentUser && currentUser.type === "ADMIN" && review.score !== 'Score' &&
+                    <button className="mybuttonoverlap mybuttonoverchange" onClick={deleteReviewHandler}>
+                        <span className="delete-button-text">Delete Review</span>
+                    </button>
+                }
+                <div className="col-4 col-md-2">
                     {
                         review.score === 'Score' ? review.username :
                         <Link to={"/profile/" + review.username}>
@@ -26,12 +32,12 @@ const ReviewSummaryListItem = ({review, disable}) => {
                 </div>
                 {
                     disable !== 'imdbID' &&
-                    <div className={'col-2'}>
+                    <div className="col-4 col-md-2">
                         {review.imdbID === 'IMDB' && <div> {review.imdbID} </div>}
                         {review.imdbID !== 'IMDB' && <Link to={`/detail/${review.imdbID}`}> {review.imdbID} </Link>}
                     </div>
                 }
-                <div className="col-2">
+                <div className="col-2 d-none d-xl-block">
                     {typeof review.time === "string" ? review.time : postDate}
                 </div>
                 <div className={contentCol}>
@@ -39,14 +45,8 @@ const ReviewSummaryListItem = ({review, disable}) => {
                 </div>
                 {
                     disable !== "Score" &&
-                    <div className='col-1 text-warning d-flex justify-content-center'>
+                    <div className='col-1 text-warning d-flex justify-content-center d-none d-md-block'>
                         {review.score}
-                    </div>
-                }
-                {
-                    currentUser && currentUser.type === 'ADMIN' && review.score !== 'Score' &&
-                    <div className='col-1 d-flex justify-content-center'>
-                        <button className="btn btn-danger" onClick={deleteReviewHandler}>Delete</button>
                     </div>
                 }
             </div>
