@@ -45,7 +45,7 @@ const ReviewSummaryListItem = ({review, disable}) => {
                 </div>
                 {
                     disable !== "Score" &&
-                    <div className='col-1 text-warning d-flex justify-content-end d-none d-md-block'>
+                    <div className='col-1 text-warning text-end d-none d-md-block'>
                         {review.score}
                     </div>
                 }
